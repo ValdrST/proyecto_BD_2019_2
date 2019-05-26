@@ -1,6 +1,6 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 25/05/2019
---@Descripción: codigo DDL del caso de estudio donde se crean las tablas
+--@Descripción: Creacion de secuencias necesarias
 
 CREATE SEQUENCE UBICACION_SEQ
     START WITH 33

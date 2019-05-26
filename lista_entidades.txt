@@ -1,0 +1,75 @@
+- scooter
+    - numero de serie
+    - numero de matricula
+    - codigo de acceso
+    - capacidad maxima Kg
+    - porcentaje carga
+    - estado scooter(fk)
+    - recarga(fk)
+    - marca(fk) 
+- marca
+    - nombre
+    - telefono
+- ubicacion
+    - latitud
+    - longitud
+    - fecha y hora
+    - scooter (fk)
+- usuario
+    - email
+    - nombre
+    - apellidos
+    - contraseña
+    - puntos
+- tarjeta
+    - numero
+    - año expiracion
+    - mes expiracion
+    - usuario(fk)
+- servicio
+    - usuario(fk)
+    - tipo
+- viaje
+    - scooter(fk)
+    - inicio
+    - fin maxima
+    - folio
+- renta
+    - scooter(fk)
+    - inicio
+    - dias custodia
+    - direccion
+- recarga
+    - clabe
+    - nombre banco
+- estado scooter
+    - clave
+    - nombre estado
+    - descripcion
+- estado scooter historico
+    - clave
+    - fecha y hora
+    - scooter(fk)
+- reporte 
+    - usuario(fk)
+    - scooter(fk)
+    - fecha reporte
+    - ubicacion(fk) null
+    - descripcion
+- imagen reporte
+    - reporte(fk)
+    - imagen
+- tarjeta prepago
+    - usuario(fk)
+    - codigo de barras
+    - fecha registro
+    - fecha expiracion
+    - importe
+- reemplazo
+    - scooter_nuevo(fk)
+    - scooter_viejo(fk)
+- zona
+    - nombre
+    - vertices
+    - scooter(fk)
+

@@ -51,3 +51,4 @@ else raise_application_error(-20002, 'Error al escribir datos.\n'
 end if;
 end loop;
 end;
+/

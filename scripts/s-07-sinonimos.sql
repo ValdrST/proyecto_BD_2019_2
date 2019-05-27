@@ -12,6 +12,7 @@ connect gr_proy_invitado/bravo123
 create or replace synonym aparatos_disponibles for gr_proy_admin.aparatos_disponibles;
 create or replace synonym aparato_info_publica for gr_proy_admin.aparato_info_publica;
 create or replace synonym aparatos_recarga for gr_proy_admin.aparatos_recarga;
+connect gr_proy_admin/bravo123
 begin
   set echo off
   set pagesize 0

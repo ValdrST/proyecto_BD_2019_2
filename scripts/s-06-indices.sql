@@ -1,14 +1,14 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 25/05/2019
 --@Descripción: Creacion de indices
-CREATE UNIQUE INDEX ZONA_APARATO_ZONA_APARATO_ID_IUX ON ZONA_APARATO(ZONA_ID,APARATO_ID);
-CREATE UNIQUE INDEX REEMPLAZO_APARATO_VIEJO_IUX ON REEMPLAZO(APARADO_VIEJO);
-CREATE UNIQUE INDEX REEMPLAZO_APARATO_NUEVO_IUX ON REEMPLAZO(APARADO_NUEVO);
-CREATE UNIQUE INDEX USUARIO_EMAIL_IUX ON USUARIO(LOWER(EMAIL));
-CREATE UNIQUE INDEX TARJETA_NUMERO_IUX ON TARJETA(NUMERO);
-CREATE UNIQUE INDEX TARJETA_PREPAGO_CODIGO_BARRAS_IUX ON TARJETA_PREPAGO(CODIGO_DE_BARRAS);
-CREATE INDEX SERVICIO_USUARIO_ID_IX ON SERVICIO(USUARIO_ID);
-CREATE INDEX VIAJE_APARATO_ID_IX ON VIAJE(APARATO_ID);
-CREATE INDEX RENTA_APARATO_ID_IX ON RENTA(APARATO_ID);
-CREATE INDEX UBICACION_APARATO_ID_IX ON UBICACION(APARATO_ID);
-CREATE INDEX APARATO_NUMERO_MATRICULA_IX ON APARATO(UPPER(NUMERO_MATRICULA));
+create unique index zona_aparato_zona_aparato_id_iux on zona_aparato(zona_id,aparato_id);
+create unique index reemplazo_aparato_viejo_iux on reemplazo(aparado_viejo);
+create unique index reemplazo_aparato_nuevo_iux on reemplazo(aparado_nuevo);
+create unique index usuario_email_iux on usuario(lower(email));
+create unique index tarjeta_numero_iux on tarjeta(numero);
+create unique index tarjeta_prepago_codigo_barras_iux on tarjeta_prepago(codigo_de_barras);
+create index servicio_usuario_id_ix on servicio(usuario_id);
+create index viaje_aparato_id_ix on viaje(aparato_id);
+create index renta_aparato_id_ix on renta(aparato_id);
+create index ubicacion_aparato_id_ix on ubicacion(aparato_id);
+create index aparato_numero_matricula_ix on aparato(upper(numero_matricula));

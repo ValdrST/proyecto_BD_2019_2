@@ -6,30 +6,30 @@
 !chmod 777 /tml/bases
 !cp empleado_ext.csv /tml/bases
 
-CREATE OR REPLACE DIRECTORY TMP_DIR AS '/tmp/bases';
-GRANT READ, WRITE ON DIRECTORY TMP_DIR TO gr_proy_admin;
-CREATE TABLE APARATO_EXT(
-    NUMERO_SERIE CHAR(18),
-    NUMERO_MATRICULA CHAR(6),
-    CODIGO_ACCESO VARCHAR(32),
-    CAPACIDAD NUMBER(3,2),
-    PORCENTAJE_CARGA NUMBER(3,0)
+create or replace directory tmp_dir as '/tmp/bases';
+grant read, write on directory tmp_dir to gr_proy_admin;
+create table aparato_ext(
+    numero_serie char(18),
+    numero_matricula char(6),
+    codigo_acceso varchar(32),
+    capacidad number(3,2),
+    porcentaje_carga number(3,0)
 )
-ORGANIZATION EXTERNAL(
-    TYPE ORACLE_LOADER
-    DEFAULT DIRECTORY TMP_DIR
-    ACCESS PARAMETERS(
-        RECORDS DELIMITED BY NEWLINE
-        BADFILE TMP_DIR:'aparato_ext_bad.log'
-        LOGFILE TMP_DIR:'empleado_ext.log'
-        FIELDS TERMINATED BY ','
-        LRTRIM
-        MISSING FIELD VALUES ARE NULL
+organization external(
+    type oracle_loader
+    default directory tmp_dir
+    access parameters(
+        records delimited by newline
+        badfile tmp_dir:'aparato_ext_bad.log'
+        logfile tmp_dir:'empleado_ext.log'
+        fields terminated by ','
+        lrtrim
+        missing field values are null
         (
-            NUMMERO_SERIE, NUMERO_MATRICULA,CODIGO_ACCESO,CAPACIDAD,
-            PORCENTAJE_CARGA
+            nummero_serie, numero_matricula,codigo_acceso,capacidad,
+            porcentaje_carga
         )
     )
-    LOCATION ('aparato_ex.csv')
+    location ('aparato_ex.csv')
 )
-REJECT LIMIT UNLIMITED;
+reject limit unlimited;

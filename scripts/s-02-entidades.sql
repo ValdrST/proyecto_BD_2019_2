@@ -3,157 +3,157 @@
 --@Descripción: codigo DDL del caso de estudio donde se crean las tablas
 
 
-CREATE TABLE MARCA(
-    MARCA_ID NUMBER(10,0) CONSTRAINT MARCA_PK PRIMARY KEY,
-    NOMBRE VARCHAR(60) NOT NULL CONSTRAINT MARCA_NOMBRE_UK UNIQUE,
-    TELEFONO CHAR(10) NOT NULL
+create table marca(
+    marca_id number(10,0) constraint marca_pk primary key,
+    nombre varchar(60) not null constraint marca_nombre_uk unique,
+    telefono char(10) not null
 );
 
-CREATE TABLE ESTADO(
-    ESTADO_ID NUMBER(10,0) CONSTRAINT ESTADO_PK PRIMARY KEY,
-    CLAVE CHAR(4) NOT NULL CONSTRAINT ESTADO_CLAVE_UK UNIQUE,
-    NOMBRE VARCHAR(50) NOT NULL CONSTRAINT ESTADO_NOMBRE_UK UNIQUE,
-    DESCRIPCION VARCHA(150) NOT NULL
+create table estado(
+    estado_id number(10,0) constraint estado_pk primary key,
+    clave char(4) not null constraint estado_clave_uk unique,
+    nombre varchar(50) not null constraint estado_nombre_uk unique,
+    descripcion varchar(150) not null
 );
 
-CREATE TABLE USUARIO(
-    USUARIO_ID NUMBER(10,0) CONSTRAINT USUARIO_PK PRIMARY KEY,
-    EMAIL VARCHAR(60) NOT NULL CONSTRAINT USUARIO_EMAIL_UK UNIQUE,
-    NOMBRE VARCHAR(50) NOT NULL,
-    APELLIDOS VARCHAR(60) NOT NULL,
-    CONTRASEÑA CHAR(60) NOT NULL,
-    PUNTOS NUMBER(10,0) NOT NULL,
-    ES_SOCIO NUMBER(1,0) NOT NULL
+create table usuario(
+    usuario_id number(10,0) constraint usuario_pk primary key,
+    email varchar(60) not null constraint usuario_email_uk unique,
+    nombre varchar(50) not null,
+    apellidos varchar(60) not null,
+    contraseña char(60) not null,
+    puntos number(10,0) not null,
+    es_socio number(1,0) not null
 );
 
-CREATE TABLE SERVICIO(
-    SERVICIO_ID NUMBER(10,0) CONSTRAINT SERVICIO_PK PRIMARY KEY,
-    USUARIO_ID NUMBER(10,0) NOT NULL,
-    TIPO CHAR(1) NOT NULL,
-    CONSTRAINT SERVICIO_USUARIO_ID_FK FOREIGN KEY (USUARIO_ID) REFERENCES USUARIO(USUARIO_ID),
-    CONSTRAINT SERVICIO_TIPO_CHK CHECK( TIPO IN ('C','V','R'))
+create table servicio(
+    servicio_id number(10,0) constraint servicio_pk primary key,
+    usuario_id number(10,0) not null,
+    tipo char(1) not null,
+    constraint servicio_usuario_id_fk foreign key (usuario_id) references usuario(usuario_id),
+    constraint servicio_tipo_chk check( tipo in ('c','v','r'))
 );
 
-CREATE TABLE RECARGA(
-    SERVICIO_ID NUMBER(10,0) CONSTRAINT RECARGA_PK PRIMARY KEY,
-    CLABE CHAR(18) NOT NULL,
-    NOMBRE_BANCO VARCHAR(60) NOT NULL,
-    CONSTRAINT RECARGA_SERVICIO_ID_FK FOREIGN KEY (SERVICIO_ID) REFERENCES SERVICIO(SERVICIO_ID)
+create table recarga(
+    servicio_id number(10,0) constraint recarga_pk primary key,
+    clabe char(18) not null,
+    nombre_banco varchar(60) not null,
+    constraint recarga_servicio_id_fk foreign key (servicio_id) references servicio(servicio_id)
 );
 
-CREATE TABLE APARATO(
-    APARATO_ID NUMBER(10,0) CONSTRAINT APARATO_PK PRIMARY KEY,
-    NUMERO_SERIE CHAR(18) NOT NULL CONSTRAINT APARATO_NUMERO_SERIE_UK UNIQUE,
-    NUMERO_MATRICULA CHAR(6) NOT NULL CONSTRAINT APARATO_NUMERO_MATRICULA_UK UNIQUE,
-    CODIGO_ACCESO VARCHAR(32) NOT NULL CONSTRAINT APARATO_CODIGO_ACCESO_UK UNIQUE,
-    CAPACIDAD NUMBER(3,2) NOT NULL,
-    PORCENTAJE_CARGA NUMBER(3,0) NOT NULL,
-    ESTADO_ID NUMBER(10,0) NOT NULL,
-    RECARGA_ID NUMBER(10,0) NOT NULL,
-    MARCA_ID NUMBER(10,0) NOT NULL,
-    CONSTRAINT APARATO_PORCENTAJE_CARGA_CHK CHECK (PORCENTAJE_CARGA <= 100 AND PORCENTAJE_CARGA >= 0),
-    CONSTRAINT APARATO_CAPACIDAD_CHK CHECK (CAPACIDAD > 0),
-    CONSTRAINT APARATO_ESTADO_ID_FK FOREIGN KEY(ESTADO_ID) REFERENCES ESTADO(ESTAOD_ID),
-    CONSTRAINT APARATO_MARCA_ID_FK FOREIGN KEY(MARCA_ID) REFERENCES MARCA(MARCA_ID),
-    CONSTRAINT APARATO_RECARGA_ID_FK FOREIGN KEY(RECARGA_ID) REFERENCES RECARGA(SERVICIO_ID)
+create table aparato(
+    aparato_id number(10,0) constraint aparato_pk primary key,
+    numero_serie char(18) not null constraint aparato_numero_serie_uk unique,
+    numero_matricula char(6) not null constraint aparato_numero_matricula_uk unique,
+    codigo_acceso varchar(32) not null constraint aparato_codigo_acceso_uk unique,
+    capacidad number(3,2) not null,
+    porcentaje_carga number(3,0) not null,
+    estado_id number(10,0) not null,
+    recarga_id number(10,0) not null,
+    marca_id number(10,0) not null,
+    constraint aparato_porcentaje_carga_chk check (porcentaje_carga <= 100 and porcentaje_carga >= 0),
+    constraint aparato_capacidad_chk check (capacidad > 0),
+    constraint aparato_estado_id_fk foreign key(estado_id) references estado(estaod_id),
+    constraint aparato_marca_id_fk foreign key(marca_id) references marca(marca_id),
+    constraint aparato_recarga_id_fk foreign key(recarga_id) references recarga(servicio_id)
 );
 
-CREATE TABLE ESTADO_HISTORICO(
-    ESTADO_HISTORICO_ID NUMBER(10,0) CONSTRAINT ESTADO_HISTORICO_PK PRIMARY KEY,
-    ESTADO_ID NUMBER(10,0) NOT NULL,
-    FECHA_ESTADO DATE DEFAULT SYSDATE,
-    APARATO_ID NUMBER(10,0) NOT NULL,
-    CONSTRAINT ESTADO_HISTORICO_ESTADO_ID_FK FOREIGN KEY(ESTADO_ID) REFERENCES ESTADO(ESTADO_ID),
-    CONSTRAINT ESTADO_HISTORICO_APARATO_ID_FK FOREIGN KEY(APARATO_ID) REFERENCES APARATO(APARATO_ID)
+create table estado_historico(
+    estado_historico_id number(10,0) constraint estado_historico_pk primary key,
+    estado_id number(10,0) not null,
+    fecha_estado date default sysdate,
+    aparato_id number(10,0) not null,
+    constraint estado_historico_estado_id_fk foreign key(estado_id) references estado(estado_id),
+    constraint estado_historico_aparato_id_fk foreign key(aparato_id) references aparato(aparato_id)
 );
 
-CREATE TABLE ZONA(
-    ZONA_ID NUMBER(10,0) CONSTRAINT ZONA_PK PRIMARY KEY,
-    NOMBRE VARCHAR(50) NOT NULL CONSTRAINT ZONA_NOMBRE_UK UNIQUE,
-    VERTICES CLOB NOT NULL
+create table zona(
+    zona_id number(10,0) constraint zona_pk primary key,
+    nombre varchar(50) not null constraint zona_nombre_uk unique,
+    vertices clob not null
 );
 
-CREATE TABLE ZONA_APARATO(
-    ZONA_APARATO_ID NUMBER(10,0) CONSTRAINT ZONA_APARATO_PK PRIMARY KEY,
-    ZONA_ID NUMBER(10,0) NOT NULL,
-    APARATO_ID NUMBER(10,0) NOT NULL,
-    CONSTRAINT ZONA_APARATO_ZONA_ID_FK FOREIGN KEY(ZONA_ID) REFERENCES ZONA(ZONA_ID),
-    CONSTRAINT ZONA_APARATO_APARATO_ID_FK FOREIGN KEY(APARATO_ID) REFERENCES APARATO(APARATO_ID)
+create table zona_aparato(
+    zona_aparato_id number(10,0) constraint zona_aparato_pk primary key,
+    zona_id number(10,0) not null,
+    aparato_id number(10,0) not null,
+    constraint zona_aparato_zona_id_fk foreign key(zona_id) references zona(zona_id),
+    constraint zona_aparato_aparato_id_fk foreign key(aparato_id) references aparato(aparato_id)
 );
 
-CREATE TABLE UBICACION(
-    UBICACION_ID NUMBER(10,0) CONSTRAINT UBICACION_PK PRIMARY KEY,
-    LATITUD NUMBER(11,8) NOT NULL,
-    LONGITUD NUMBER(11,8) NOT NULL,
-    FECHA_HORA DATE NOT NULL DEFAULT SYSDATE,
-    APARATO_ID NUMBER(10,0) NOT NULL,
-    COORDENADAS VARCHAR2(24) GENERATED ALWAYS AS (TO_CHAR(LATITUD)||','||TO_CHAR(LONGITUD)) VIRTUAL,
-    CONSTRAINT UBICACION_LATITUD_CHK CHECK (LATITUD <= 180 AND LATITUD >= 0),
-    CONSTRAINT UBICACION_LONGITUD_CHK CHECK (LONGITUD <= 180 AND LONGITUD >= 0),
-    CONSTRAINT UBICACION_APRATO_ID_FK FOREIGN KEY(APARATO_ID) REFERENCES APARATO(APARATO_ID)
+create table ubicacion(
+    ubicacion_id number(10,0) constraint ubicacion_pk primary key,
+    latitud number(11,8) not null,
+    longitud number(11,8) not null,
+    fecha_hora date not null default sysdate,
+    aparato_id number(10,0) not null,
+    coordenadas varchar2(24) generated always as (to_char(latitud)||','||to_char(longitud)) virtual,
+    constraint ubicacion_latitud_chk check (latitud <= 180 and latitud >= 0),
+    constraint ubicacion_longitud_chk check (longitud <= 180 and longitud >= 0),
+    constraint ubicacion_aprato_id_fk foreign key(aparato_id) references aparato(aparato_id)
 );
 
-CREATE TABLE REEMPLAZO(
-    REEMPLAZO_ID NUMBER(10,0) CONSTRAINT REEMPLAZO_PK PRIMARY KEY,
-    APARATO_VIEJO NUMBER(10,0) NOT NULL CONSTRAINT APARATO_APARATO_VIEJO_UK UNIQUE,
-    APARATO_NUEVO NUMBER(10,0) NOT NULL CONSTRAINT APARATO_APARATO_NUEVO_UK UNIQUE,
-    CONSTRAINT REEMPLAZO_APARATO_VIEJO_FK FOREIGN KEY(APARATO_VIEJO) REFERENCES APARATO(APARATO_ID),
-    CONSTRAINT REEMPLAZO_APARATO_NUEVO_FK FOREIGN KEY(APARATO_NUEVO) REFERENCES APARATO(APARATO_ID)
+create table reemplazo(
+    reemplazo_id number(10,0) constraint reemplazo_pk primary key,
+    aparato_viejo number(10,0) not null constraint aparato_aparato_viejo_uk unique,
+    aparato_nuevo number(10,0) not null constraint aparato_aparato_nuevo_uk unique,
+    constraint reemplazo_aparato_viejo_fk foreign key(aparato_viejo) references aparato(aparato_id),
+    constraint reemplazo_aparato_nuevo_fk foreign key(aparato_nuevo) references aparato(aparato_id)
 );
 
-CREATE TABLE TARJETA(
-    USUARIO_ID NUMBER(10,0) CONSTRAINT TARJETA_PK PRIMARY KEY,
-    NUMERO CHAR(16) NOT NULL CONSTRAINT TARJETA_NUMERO_UK UNIQUE,
-    AÑO_EXPIRACION CHAR(2) NOT NULL,
-    MES_EXPIRACION CHAR(2) NOT NULL,
-    CONSTRAINT TARJETA_MES_EXPIRACION_CHK CHECK (TO_NUMBER(MES_EXPIRACION) <= 12 AND TO_NUMBER(MES_EXPIRACION) > 0),
-    CONSTRAINT TARJETA_USUARIO_ID FOREIGN KEY (USUARIO_ID) REFERENCES USUARIO(USUARIO_ID)
+create table tarjeta(
+    usuario_id number(10,0) constraint tarjeta_pk primary key,
+    numero char(16) not null constraint tarjeta_numero_uk unique,
+    año_expiracion char(2) not null,
+    mes_expiracion char(2) not null,
+    constraint tarjeta_mes_expiracion_chk check (to_number(mes_expiracion) <= 12 and to_number(mes_expiracion) > 0),
+    constraint tarjeta_usuario_id foreign key (usuario_id) references usuario(usuario_id)
 );
 
-CREATE TABLE TARJETA_PREPAGO(
-    TARJETA_PREPAGO_ID NUMBER(10,0) CONSTRAINT TARJETA_PREPAGO_PK PRIMARY KEY,
-    USUARIO_ID NUMERIC(10,0) NOT NULL,
-    CODIGO_DE_BARRAS CHAR(21) NOT NULL CONSTRAINT TARJETA_PREPAGO_CODIGO_DE_BARRAS_UK UNIQUE,
-    FECHA_REGISTRO DATE NOT NULL DEFAULT SYSDATE,
-    FECHA_EXPIRACION DATE NOT NULL,
-    IMPORTE NUMBER(16,2) NOT NULL DEFAULT 0,
-    CONSTRAINT TARJETA_PREPAGO_USUARIO_ID_FK FOREIGN KEY (USUARIO_ID) REFERENCES USUARIO(USUARIO_ID)
+create table tarjeta_prepago(
+    tarjeta_prepago_id number(10,0) constraint tarjeta_prepago_pk primary key,
+    usuario_id numeric(10,0) not null,
+    codigo_de_barras char(21) not null constraint tarjeta_prepago_codigo_de_barras_uk unique,
+    fecha_registro date not null default sysdate,
+    fecha_expiracion date not null,
+    importe number(16,2) not null default 0,
+    constraint tarjeta_prepago_usuario_id_fk foreign key (usuario_id) references usuario(usuario_id)
 );
 
-CREATE TABLE REPORTE(
-    REPORTE_ID NUMBER(10,0) CONSTRAINT REPORTE_PK PRIMARY KEY,
-    USUARIO_ID NUMBER(10,0) NOT NULL,
-    APARATO_ID NUMBER(10,0) NOT NULL,
-    FECHA DATE NOT NULL DEFAULT SYSDATE,
-    LATITUD NUMBER(11,8) NULL,
-    LONGITUD NUMBER(11,8) NULL,
-    DESCRIPCION VARCHAR(200) NOT NULL
+create table reporte(
+    reporte_id number(10,0) constraint reporte_pk primary key,
+    usuario_id number(10,0) not null,
+    aparato_id number(10,0) not null,
+    fecha date not null default sysdate,
+    latitud number(11,8) null,
+    longitud number(11,8) null,
+    descripcion varchar(200) not null
 );
 
-CREATE TABLE IMAGEN_REPORTE(
-    IMAGEN_REPORTE_ID NUMBER(10,0) CONSTRAINT IMAGEN_REPORTE_PK PRIMARY KEY,
-    REPORTE_ID NUMBER(10,0) NOT NULL,
-    IMAGEN BLOB NOT NULL,
-    CONSTRAINT IMAGEN_REPORTE_REPORTE_ID_FK FOREIGN KEY (REPORTE_ID) REFERENCES REPORTE(REPORTE_ID)
+create table imagen_reporte(
+    imagen_reporte_id number(10,0) constraint imagen_reporte_pk primary key,
+    reporte_id number(10,0) not null,
+    imagen blob not null,
+    constraint imagen_reporte_reporte_id_fk foreign key (reporte_id) references reporte(reporte_id)
 );
 
-CREATE TABLE VIAJE(
-    SERVICIO_ID NUMBER(10,0) CONSTRAINT VIAJE_PK PRIMARY KEY,
-    INICIO DATE NOT NULL,
-    FIN DATE NOT NULL,
-    FOLIO CHAR(13) NOT NULL,
-    APARATO_ID NUMBER(10,0) NOT NULL,
-    DURACION_VIAJE DATE GENERATED ALWAYS AS (FIN - INICIO) VIRTUAL,
-    CONSTRAINT VIAJE_SERVICIO_ID_FK FOREIGN KEY (SERVICIO_ID) REFERENCES SERVICIO(SERVICIO_ID),
-    CONSTRAINT VIAJE_APARATO_ID_FK FOREIGN KEY (APARATO_ID) REFERENCES APARATO(APARATO_ID)
+create table viaje(
+    servicio_id number(10,0) constraint viaje_pk primary key,
+    inicio date not null,
+    fin date not null,
+    folio char(13) not null,
+    aparato_id number(10,0) not null,
+    duracion_viaje date generated always as (fin - inicio) virtual,
+    constraint viaje_servicio_id_fk foreign key (servicio_id) references servicio(servicio_id),
+    constraint viaje_aparato_id_fk foreign key (aparato_id) references aparato(aparato_id)
 );
 
-CREATE TABLE RENTA(
-    SERVICIO_ID NUMBER(10,0) CONSTRAINT RENTA_PK PRIMARY KEY,
-    INICIO DATE NOT NULL,
-    DIAS_CUSTODIO NUMBER(10,0) NOT NULL,
-    DIRECCION VARCHAR(100) NOT NULL,
-    APARATO_ID NUMBER(10,0) NOT NULL,
-    CONSTRAINT RENTA_SERVICIO_ID_FK FOREIGN KEY (SERVICIO_ID) REFERENCES SERVICIO(SERVICIO_ID),
-    CONSTRAINT RENTA_APARATO_ID_FK FOREIGN KEY (APARATO_ID) REFERENCES APARATO(APARATO_ID)
+create table renta(
+    servicio_id number(10,0) constraint renta_pk primary key,
+    inicio date not null,
+    dias_custodio number(10,0) not null,
+    direccion varchar(100) not null,
+    aparato_id number(10,0) not null,
+    constraint renta_servicio_id_fk foreign key (servicio_id) references servicio(servicio_id),
+    constraint renta_aparato_id_fk foreign key (aparato_id) references aparato(aparato_id)
 );

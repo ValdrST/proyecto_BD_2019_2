@@ -2,106 +2,106 @@
 --@Fecha creación: 25/05/2019
 --@Descripción: Creacion de secuencias necesarias
 
-CREATE SEQUENCE UBICACION_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence ubicacion_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE ZONA_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence zona_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE ZONA_APARATO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence zona_aparato_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE UBICACION_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence ubicacion_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE MARCA_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence marca_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE REEMPLAZO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence reemplazo_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE APARATO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence aparato_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE ESTADO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence estado_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE ESTADO_HISTORICO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence estado_historico_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE REPORTE_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence reporte_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE USUARIO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence usuario_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE IMAGEN_REPORTE_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence imagen_reporte_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;
 
-CREATE SEQUENCE TARJETA_PREPAGO_SEQ
-    START WITH 33
-    INCREMENT BY 1
-    NOMINVALUE
-    NOMAXVALUE
-    CACHE 33
+create sequence tarjeta_prepago_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
 ;

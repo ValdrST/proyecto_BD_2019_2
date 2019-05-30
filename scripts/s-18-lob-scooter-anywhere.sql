@@ -1,7 +1,3 @@
---PASAR ESTO A MAIN
-create or replace directory data_dir as '/tmp/bd';
-grant read, write on directory data_dir to gr_proy_invitado;
---PASAR ESTO A MAIN
 show errors
 nombre varchar(200):= 'prueba.png';
 reporte_id numeric(10,0) := 4;

@@ -26,14 +26,6 @@ create sequence zona_aparato_seq
     cache 33
 ;
 
-create sequence ubicacion_seq
-    start with 33
-    increment by 1
-    nominvalue
-    nomaxvalue
-    cache 33
-;
-
 create sequence marca_seq
     start with 33
     increment by 1

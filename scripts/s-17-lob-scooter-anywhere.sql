@@ -2,7 +2,7 @@
 --@Fecha creación: 26/05/2019
 --@Descripción: Script encargado de cargar una imagen a la BD.Z
 connect gr_proy_admin/bravo123
-create or replace directory data_dir as '/tmp/bd';
+create or replace directory data_dir as '/tmp/bases';
 grant read,write on directory data_dir to gr_proy_invitado;
 create or replace procedure p_inserta_imagen(a_reporte_id numeric(10,0), a_nombre_archivo varchar(200)) is
 v_bfile bfile;

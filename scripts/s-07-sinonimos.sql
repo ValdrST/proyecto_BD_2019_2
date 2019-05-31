@@ -13,14 +13,19 @@ create or replace synonym estado for gr_proy_admin.estado;
 create or replace synonym zona_aparato for gr_proy_admin.zona_aparato;
 create or replace synonym zona for gr_proy_admin.zona;
 connect gr_proy_admin/bravo123
+declare 
+  cursor cur_user_table is
+    select table_name from user_tables;
+  v_table_name user_tables.table_name%type;
+
 begin
-  set echo off
-  set pagesize 0
-  set linesize 1000
-  execute immediate spool s-07-2-sinonimos.sql;
-  select 'create public synonym XX_' || table_name || ' for ' || owner || '.' || table_name || ';'
-  from all_tables where owner='gr_proy_admin';
-  spool off
-  @s-07-2-sinonimos.sql
+  open cur_user_table;
+  loop
+    fetch cur_user_table into 
+      v_table_name;
+    exit when cur_user_table%notfound;
+    execute immediate 'create synonym XX_'||v_table_name||' for '||v_table_name;
+  end loop;
+  close cur_user_table;
 end;
 /

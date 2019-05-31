@@ -58,6 +58,14 @@ create sequence estado_seq
     cache 33
 ;
 
+create sequence servicio_seq
+    start with 33
+    increment by 1
+    nominvalue
+    nomaxvalue
+    cache 33
+;
+
 create sequence estado_historico_seq
     start with 33
     increment by 1

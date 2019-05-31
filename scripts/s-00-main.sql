@@ -29,3 +29,5 @@ connect gr_proy_admin/bravo123
 @s-06-indices.sql
 @s-07-sinonimos.sql
 @s-08-vistas.sql
+@s-09-carga-inicial.sql
+@s-10-consultas.sql

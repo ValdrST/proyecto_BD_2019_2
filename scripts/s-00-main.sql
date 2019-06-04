@@ -30,4 +30,6 @@ connect gr_proy_admin/bravo123
 @s-07-sinonimos.sql
 @s-08-vistas.sql
 @s-09-carga-inicial.sql
+connect gr_proy_admin/bravo123
 @s-10-consultas.sql
+@s-11-tr-bonificacion_reporte.sql

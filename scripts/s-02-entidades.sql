@@ -29,7 +29,7 @@ create table servicio(
     usuario_id number(10,0) not null,
     tipo char(1) not null,
     constraint servicio_usuario_id_fk foreign key (usuario_id) references usuario(usuario_id),
-    constraint servicio_tipo_chk check( tipo in ('c','v','r'))
+    constraint servicio_tipo_chk check( tipo in ('C','V','R'))
 );
 
 create table recarga(
@@ -125,7 +125,8 @@ create table reporte(
     fecha date default sysdate not null,
     latitud number(11,8) null,
     longitud number(11,8) null,
-    descripcion varchar(200) not null
+    descripcion varchar(200) not null,
+    aceptado number(1,0) default 0 not null
 );
 
 create table imagen_reporte(

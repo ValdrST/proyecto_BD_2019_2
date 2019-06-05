@@ -1,0 +1,32 @@
+<div class="modal fade cerrar" role="dialog" id="modal-archivo-tarea">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Agregar archivos</h4>
+                <button type="button" class="close" id="close-modal-subir-archivos" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <form id="form-subir">
+                <div class="modal-body">
+                    <label for="ma-file-upload" class="subir" id="modal-campo-subir">
+                        <span id="cartel-modal-subir">Presione para agregar sus archivos</span>
+                    </label>
+                    <input id="ma-file-upload" type="file" style='display: none;' />
+                    <div id="estado-archivos">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <input type="submit" class="btn btn-primary save" value="subir">
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

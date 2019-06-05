@@ -1,0 +1,74 @@
+.card{
+  border-style: none;
+  width: 110%;
+  text-align: center;
+}
+
+.card-body{
+  width: 110%;
+  background: #cd0021;
+  padding: 5px;
+}
+
+.card-img-top{
+  width: 110%;
+}
+.card-text{
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.imagen{
+  margin-top:20px;
+  margin-bottom: 20px;
+  font-size: 7rem;
+}
+
+.carta{
+  margin-right: 20px; 
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+
+.box {
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
+    }
+
+.box .hidden {
+    background: #000;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 100%;
+    opacity: 1;
+    -webkit-transition: all 0.7s ease;
+    -moz-transition: all 0.7s ease;
+    -ms-transition: all 0.7s ease;
+    -o-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+    opacity:0.8;
+    filter: alpha(opacity=80);
+    padding: 0px  10px 0px 10px;
+    color: #fff;
+    font-size: 0.8rem;
+    }
+
+.box:hover .hidden {
+
+  bottom:0;
+}
+
+.caja{
+  margin: 15%;
+}
+
+.card{
+  width: 100%;
+
+}
+
+.sep{
+  margin-bottom: 5.8%;
+}

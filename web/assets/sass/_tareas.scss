@@ -1,0 +1,63 @@
+.mis_tareas{
+	width: 100%;
+	padding: 20px 30px 20px 30px;
+	text-align: center;
+	.tareitas{
+
+		width: 94%;
+		margin: 0 3% 0 3%;
+
+		tr{
+			td{
+				font-size: 1.2rem;
+				text-align: center;
+				padding: 10px;
+				display: inline-block;
+			}
+		}
+	}
+}
+
+.plata{
+	color: #fff;
+	background: #bdbdbd;
+}
+
+.blanco{
+	background: #fff;
+	color: #000;
+}	
+
+.letras{
+	font-size: 0.76rem;
+}
+
+.fecha{
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: $main-font;
+}
+
+.a_tiempo{
+	color: #fff;
+	background: $good;
+}
+
+ 	
+
++.no_a_tiempo{
+	color: #fff;
+	background: rgb(204, 46, 46); 
+}
+
+.maso{
+	color: $negro;
+	background: $warning;
+}
+
+.tarde{
+	color: #fff;
+	background: $danger;
+}

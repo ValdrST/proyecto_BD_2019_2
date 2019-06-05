@@ -69,13 +69,13 @@ begin
     v_marca.extend;
     v_marca(3) := marca_seq.currval;
     insert into usuario(usuario_id,email,nombre,apellidos,contraseña,puntos,es_socio) 
-        values (usuario_seq.nextval,'usuario2@chinamail.com','Wey2','huang wo','$2y$10$WnH6o/Lp6RGXJPDXoDAh.eSukwP3G7TS1HfebKqbg1L5fHOR60cn2',0,1);
+        values (usuario_seq.nextval,'admin@scooter_anywhere.com','scooter','anywhere','$2y$10$WnH6o/Lp6RGXJPDXoDAh.eSukwP3G7TS1HfebKqbg1L5fHOR60cn2',0,1);
     insert into tarjeta(usuario_id,numero,mes_expiracion,año_expiracion) 
         values (usuario_seq.currval,'1233456789023221','03','20');
     v_usuario.extend;
     v_usuario(1) := usuario_seq.currval;
     insert into servicio(servicio_id,usuario_id,tipo) 
-        values (servicio_seq.nextval,usuario_seq.currval,'C');
+        values (servicio_seq.nextval,v_usuario(1),'C');
     insert into recarga(servicio_id,clabe,nombre_banco) 
         values (servicio_seq.currval,'312341232135657512','banco interacciones');
     v_servicio.extend;

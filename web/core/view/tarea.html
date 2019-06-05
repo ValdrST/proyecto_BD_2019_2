@@ -1,0 +1,91 @@
+<div class="modal fade" role="dialog" id="modal-tarea">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Informacion Tarea</h4>
+				<button type="button" class="close btn-tarea-cerrar" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="col-md-12">
+					<div class="descripcion">
+						<h3 class="proyecto-nombre-tarea">
+						</h3>
+						<h4>Asignado a</h4>
+						<hr class="linea">
+						<div class="usuario-tarea-asignado">
+						</div>
+						<p>
+							<h4 class="proyecto-cuerpo-encab-descripcion">Descripcion</h4>
+						</p>
+						<hr class="linea">
+						<p class="tarea-p-descripcion">
+						</p>
+						<h3 class="card-title">Historico de tiempo</h3>
+						<hr class="linea">
+						<div class="linea-tiempo">
+							<h6 class="card-subtitle mb-2 text-muted"></h6>
+							<ul class="timeline timeline-tarea">
+							</ul>
+						</div>
+						<p>
+							<span class="adicional">Material adicional</span>
+							<a href="#" class="btn-tarea-archivo-add">
+								<span class="fa fa-plus mas">
+							</a>
+						</p>
+				
+						<hr class="linea">
+						<div class="row" id="archivios-material-adicional">
+							<!--Aqui van las cartas con elementos de material adicional-->
+						</div>
+					</div>
+					<p></p>
+					<p><span class="adicional proyecto-archivos-aSubir">Archivos a subir</span><a href=""
+							data-toggle="modal" data-target="#archivos"><span class="fa fa-upload mas"></a></p>
+					
+					<hr class="linea">
+					<div class="row" id="archivos-a-subir">
+
+						<!--aqui van las cartas de los archivos a subir-->
+						<div class="col-lg-3 col-md-6 col-sm-12 carta">
+							<div class="card">
+								<div class="card-img-top box">
+									<!-- incicio cortina --->
+									<div class="hidden">
+										<div class="caja"></div>
+										<span class="proyecto-titulo-archivo">
+										</span>
+										<div class="sep"></div>
+										<button class="btn btn-secondary btn-circle margin proyecto-enlace-descarga"
+											type="button">
+											<span class="fa fa-download"></span>
+										</button>
+										<button class="btn btn-secondary btn-circle margin proyecto-enlace-vista"
+											type="button">
+											<span class="fa fa-file"></span>
+										</button>
+									</div>
+									<!-- Fin cortina --->
+									<span class="fa fa-file-image-o imagen proyecto-imagen-archivo" aria-hidden="true">
+									</span>
+								</div>
+								<div class="card-body">
+									<p class="card-text proyecto-carta-descripcion">
+									</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary btn-tarea-cerrar" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="assets/js/archivos.js"></script>
+<script src="assets/js/md5.js"></script>

@@ -1,0 +1,41 @@
+.equipo-alineacion{
+	padding: 4% 2% 2% 2%;
+}
+
+.equipo-miembros{
+	margin-bottom: 100px;
+}
+
+//            sup  lat
+//    padding: 2%  2%;
+
+.fila{
+	width: 84%;
+	padding: 10px 20px;
+}
+
+.tabProyectos{
+	margin-left: 2%;
+}
+
+@media only screen and (max-width: 995px) {
+
+	.equipo-alineacion{
+		text-align: center;
+	}
+
+	.fila{
+		width: 100%;
+	}
+
+	.equipo-btn-elimina-miembro{
+		margin-left: 13px;
+	}
+}
+
+.equipo-btn-edita-miembro{
+	margin-left: 20px;
+}
+
+
+

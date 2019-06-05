@@ -1,0 +1,52 @@
+<!-- Inicio modal para agregar tareas -->
+<div class="modal fade cerrar" id="modal-registro-aparato-renta" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Inicio encabezado del modal -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;
+                    </span>
+                </button>
+            </div>
+            <!-- Final del encabezado del modal -->
+            <!-- Inicio Cuerpo del modal -->
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- contenido de cada pestaña -->
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">Renta</h3>
+                            <div class="form-group row">
+                                <div class="col-4">
+                                    <h4 class="h4-matricula"></h4>
+                                </div>
+                                <div class="col-4">
+                                        <input class="form-control renta-dias-custodio" placeholder="dias custodio" type="number" min=1>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control renta-direccion" placeholder="direccion" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Final cuerpo del modal -->
+            <!-- Inicio footer del modal --->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary btn-set-renta-commit">
+                    Rentar
+                </button>
+            </div>
+            <!-- Final footer del modal --->
+        </div>
+        <!-- Final modal para agregar tareas --->
+    </div>
+</div>

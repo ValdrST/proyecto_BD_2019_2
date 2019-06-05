@@ -1,0 +1,119 @@
+<!-- Inicio modal para agregar tareas -->
+<div class="modal fade cerrar" id="modal-add-tarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Inicio encabezado del modal -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                    Agregar tarea
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;
+                    </span>
+                </button>
+            </div>
+            <!-- Final del encabezado del modal -->
+            <!-- Inicio Cuerpo del modal -->
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <!-- Pestañas de navegacion -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a class="colorea" href="#tab-tarea-datos" aria-controls="tab-tarea-datos" role="tab"
+                                data-toggle="tab">
+                                Datos
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a class="colorea" href="#tab-tarea-usuarios" aria-controls="tab-tarea-usuarios" role="tab"
+                                data-toggle="tab">
+                                Usuarios
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a class="colorea" href="#tab-tarea-archivos" aria-controls="tab-tarea-archivos" role="tab"
+                                data-toggle="tab">
+                                Documentos
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- contenido de cada pestaña -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="tab-tarea-datos">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h3 class="card-title">Datos tarea</h3>
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <input class="form-control txt-tarea-nombre" placeholder="titulo"
+                                                type="text">
+                                        </div>
+                                        <div class="col-4 input-group date" id="datetimepicker1"
+                                            data-target-input="nearest">
+                                            <input type="text"
+                                                class="form-control datetimepicker-input txt-tarea-fecha-inicio"
+                                                data-target="#datetimepicker1" placeholder="fecha inicio" />
+                                            <div class="input-group-append" data-target="#datetimepicker1"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 input-group date" id="datetimepicker2"
+                                            data-target-input="nearest">
+                                            <input type="text"
+                                                class="form-control datetimepicker-input txt-tarea-fecha-fin"
+                                                data-target="#datetimepicker1" placeholder="fecha fin" />
+                                            <div class="input-group-append" data-target="#datetimepicker2"
+                                                data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <textarea class="form-control txt-descripcion-tarea"
+                                        placeholder="Introduce la descripcion de la tarea" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-tarea-usuarios">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h3 class="card-title">Usuarios asignados</h3>
+                                    <form class="form">
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <select class="selectpicker select-tarea-usuario"
+                                                    data-live-search="true" multiple>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-tarea-archivos">
+                            <label for="ma-file-upload" class="subir" id="hola">
+                                <span id="proyecto-modal-cartel-inicio">Presione para subir sus archivos
+                            </label>
+                            <input id="ma-file-upload" type="file" style='display: none;' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Final cuerpo del modal -->
+            <!-- Inicio footer del modal --->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary btn-set-tarea">
+                    Agregar tarea
+                </button>
+            </div>
+            <!-- Final footer del modal --->
+        </div>
+        <!-- Final modal para agregar tareas --->

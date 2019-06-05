@@ -1,0 +1,53 @@
+<!-- Inicio modal para agregar tareas -->
+<div class="modal fade cerrar" id="modal-registro-renta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <!-- Inicio encabezado del modal -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;
+                    </span>
+                </button>
+            </div>
+            <!-- Final del encabezado del modal -->
+            <!-- Inicio Cuerpo del modal -->
+            <div class="modal-body">
+                <div role="tabpanel">
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">Selecciona tu scooter</h3>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <table id="table-aparato-renta" class="table table-striped table-bordered "
+                                        style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>matricula</th>
+                                                <th>codigo acceso</th>
+                                                <th>capacidad</th>
+                                                <th>porcentaje carga</th>
+                                                <th>estado</th>
+                                                <th>opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbl-usuarios-body">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

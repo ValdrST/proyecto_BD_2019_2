@@ -1,0 +1,334 @@
+<div class="modal fade" role="dialog" id="modal-proceso">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Proceso</h4>
+				<button type="button" class="close btn-cerrar-proceso" id="cierra-modal-proceso" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- Inicio barra de datos del proyecto -->
+				<div class="col-12 tareas">
+					<p class="separador">
+						<h3 class="h3-proceso-nombre">
+
+						</h3>
+					</p>
+					<p class="separador">
+						<h4 class="h4-proceso-equipo">
+							Equipo asignado
+						</h4>
+						<h5 class="h5-proceso-equipo">
+
+						</h5>
+					</p>
+					<p class="separador">
+						<h4 class="proyecto-encab-descripcion">
+							Descripcion
+						</h4>
+					</p>
+					<p class="separador parrafo p-proceso-descripcion">
+					</p>
+					<p class="separador">
+						<h4>
+							Progreso
+						</h4>
+					</p>
+					<p class="separador">
+						<div class="progress">
+							<div class="progress-bar bg-primary barra-progreso-proceso" style="width: 20%" role="progressbar"
+								aria-valuemin="0" aria-valuemax="100">
+							</div>
+						</div>
+					</p>
+					<p class="separador proyecto-tareas-completadas">
+					</p>
+					<p class="separador">
+						<span class="junto proyecto-encab-listaTareas">
+							Lista de tareas
+						</span>
+						<a href="#" class="btn-tarea-add">
+							<span class="fa fa-plus mas">
+						</a>
+					</p>
+					<p class="separador">
+						<ul class="todo-list mt-2 mb-2">
+							<li class="todo-list-item">
+								<table class="display" id="table-tareas" style="width:100%">
+									<tbody class="tbody-tareas-usuario">
+									</tbody>
+								</table>
+							</li>
+						</ul>
+					</p>
+					<div id="grafico-tareas">
+						<button type="button" class="btn btn-info btn-grafico-tareas" style="display:none;"><i class="fa fa-line-chart" aria-hidden="true"></i>Ver grafico</button>
+					</div>
+				</div>
+				<!-- Fin barra de datos del proyecto --->
+				<!-- Inicio cuerpo de la tarea --->
+				<div class="col-md-8">
+
+					<!--Inicio modal de tareas-->
+
+					<div class="modal fade" id="modal-de-tareas" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+						aria-hidden="true">
+
+						<div class="modal-dialog modal-lg">
+
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Agregar archivos</h4>
+									<button type="button" class="close" id="cierra-modal-tarea" aria-label="Close">
+										<span aria-hidden="true">
+											&times;
+										</span>
+									</button>
+								</div>
+
+								<div class="modal-body">
+
+									<div class="descripcion">
+										<h3 class="proyecto-nombre-tarea">
+										</h3>
+										Asignado a
+										<button class="btn btn-secondary btn-circle margin" type="button">
+											<span class="fa fa-user proyecto-imagen-usuario">
+											</span>
+										</button>
+										<span class="proyecto-nombre-usuario">
+										</span>
+										<p>
+											<h4 class="proyecto-cuerpo-encab-descripcion">Descripcion</h4>
+										</p>
+										<hr class="linea">
+										<p class="proyecto-texto-cDescripcion">
+										</p>
+										<p>
+											<span class="adicional">Material adicional</span>
+											<a href="" data-toggle="modal" data-target="#myModal">
+												<span class="fa fa-plus mas">
+											</a>
+										</p>
+										<hr class="linea">
+										<div class="row">
+											<div class="col-lg-3 col-md-6 col-sm-12 carta">
+												<div class="card">
+													<div class="card-img-top box">
+														<!-- incicio cortina --->
+														<div class="hidden">
+															<div class="caja"></div>
+															<span class="proyecto-titulo-archivo">
+															</span>
+															<div class="sep"></div>
+															<button class="btn btn-secondary btn-circle margin proyecto-enlace-descarga"
+																type="button">
+																<span class="fa fa-download"></span>
+															</button>
+															<button class="btn btn-secondary btn-circle margin proyecto-enlace-vista" type="button">
+																<span class="fa fa-file"></span>
+															</button>
+														</div>
+														<!-- Fin cortina --->
+														<span class="fa fa-file-image-o imagen proyecto-imagen-archivo" aria-hidden="true">
+														</span>
+													</div>
+													<div class="card-body">
+														<p class="card-text proyecto-carta-descripcion">
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-3 col-md-6 col-sm-12 carta">
+												<div class="card">
+													<div class="card-img-top box">
+														<!-- incicio cortina --->
+														<div class="hidden">
+															<div class="caja"></div>
+															<span class="proyecto-titulo-archivo">
+															</span>
+															<div class="sep"></div>
+															<button class="btn btn-secondary btn-circle margin proyecto-enlace-vista" type="button">
+																<span class="fa fa-share"></span>
+															</button>
+														</div>
+														<!-- Fin cortina --->
+														<span class="fa fa-internet-explorer imagen proyecto-imagen-archivo" aria-hidden="true">
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<p></p>
+									<p><span class="adicional proyecto-archivos-aSubir">Archivos a subir</span><a href=""
+											data-toggle="modal" data-target="#archivos"><span class="fa fa-upload mas"></a></p>
+									<hr class="linea">
+									<div class="row">
+										<div class="col-lg-3 col-md-6 col-sm-12 carta">
+											<div class="card">
+												<div class="card-img-top box">
+													<!-- incicio cortina --->
+													<div class="hidden">
+														<div class="caja"></div>
+														<span class="proyecto-titulo-archivo">
+														</span>
+														<div class="sep"></div>
+														<button class="btn btn-secondary btn-circle margin proyecto-enlace-descarga" type="button">
+															<span class="fa fa-download"></span>
+														</button>
+														<button class="btn btn-secondary btn-circle margin proyecto-enlace-vista" type="button">
+															<span class="fa fa-file"></span>
+														</button>
+													</div>
+													<!-- Fin cortina --->
+													<span class="fa fa-file-image-o imagen proyecto-imagen-archivo" aria-hidden="true">
+													</span>
+												</div>
+												<div class="card-body">
+													<p class="card-text proyecto-carta-descripcion">
+													</p>
+												</div>
+											</div>
+										</div>
+										Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus rerum nisi dignissimos libero. Culpa,
+										laudantium ullam ut reiciendis natus eius aliquam excepturi recusandae dolorum qui perspiciatis quod
+										eum tempora accusantium.
+
+										Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum officiis perferendis beatae nihil,
+										quae blanditiis voluptates odit? Necessitatibus delectus asperiores nemo fugiat doloribus ipsa sequi
+										cumque alias veniam eos. Atque!
+
+										lorem
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+					<!--Final modal de tareas-->
+
+					<!-- inicio modal para agregar archivos --->
+
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Agregar archivos</h4>
+									<button type="button" class="close" id="cierra-modal-subir-tareas" aria-label="Close">
+										<span aria-hidden="true">
+											&times;
+										</span>
+									</button>
+								</div>
+								<form id="proyecto-form-subir">
+									<div class="modal-body">
+										<label for="ma-file-upload" class="subir" id="hola">
+											<span id="proyecto-modal-cartel-inicio">Presione para subir sus archivos
+										</label>
+										<input id="ma-file-upload" type="file" style='display: none;' />
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" id="btn-cerrar-sub-archivos">
+											Cancelar
+										</button>
+										<input type="submit" class="btn btn-primary save" value="subir">
+
+									</div>
+								</form>>
+							</div>
+						</div>
+					</div>
+
+					<!-- Final modal agregar archivos --->
+
+
+					<!-- Inicio de modal para subir archivos del asignado -->
+
+					<div class="modal fade" id="archivos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Subir archivos</h4>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div role="tabpanel">
+										<!-- Nav tabs -->
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active">
+												<a class="colorea" href="#uploadTab3" aria-controls="uploadTab" role="tab" data-toggle="tab">
+													Pestaña a
+												</a>
+											</li>
+										</ul>
+										<!-- Tab panes -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="uploadTab3">Ontenido de
+												subir archivos</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">
+										Cancelar
+									</button>
+									<button type="button" class="btn btn-primary save">
+										Subir archivos
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Final del modalbd-example-modal-lg para subir archivos del asignado -->
+
+
+				</div>
+				<script src="assets/js/archivos.js"></script>
+				<script src="assets/js/cerrar_modals.js"></script>
+				<script src="assets/js/md5.js"></script>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary btn-cerrar-proceso" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--
+    Notas:
+            -Clase proyecto-nombre-proyecto: encabezado donde va el nombre del proyecto
+            -Clase proyecto-encab-descripcion: Encabezado del apartado de decripcion(lo considero no necesario, favor de revisar)
+            -Clase proyecto-texto-descripcion: Parrafo donde colocamos la descripciond del proyecto
+            -Clase progress-bar: div donde se define el tamaño de la barra de progreso
+            -Clase proyecto-tareas completadas: parrafo donde esta el numero de tareas completadas
+            -Clase proyecto-encab-listaTareas: span donde va el titulo de la lista de tareas.
+            -Clase proyecto-check-tarea: ibput donde esta el checkbox de la tarea
+            -Clase proyecto-todo-nombre-tarea: label donde ira el nombre de la tarea
+            
+            -Clase proyecto-ver-tarea: enlace donde redirigira a la descripcion de la tarea.
+            -Clase proyecto-eliminar-tarea: enlace que elimina una tarea
+            -Clase proyecto-imagen-usuario: span donde ira la imagen del usuario. si no hay imagen que incluya las clases fa y fa-user
+            -Clase proyecto-nombre-usuario: span donde va el nombre del usuario
+            
+            -Clase proyecto-encab-descripcion: encabezado donde ira el titulo de descripcion
+            -clase proyecto-texto-cDescripcion: parrafo donde estara la descripcion de la tarea.
+            -clase adicional: clase donde estsa el encabezado del material adicional
+            -clase proyecto-titulo-archivo: span donde ira el nombre del archivo subido.
+            -clase proyecto-enlace-descarga: boton que permite descargar el archivo
+            -clase proyecto-enlace-vista: boton que permite verlo en linea
+            -clase proyecto-imagen-archivo: span que contiene la imagen del archivo. si no esta la imagen del documento se colocan las clases fa y fa-file-image-o(dependiendo del tipo de archivo)    
+            -clase card-body: clase que muestra el cuerpo de la carta del documento 
+            -clase proyecto-carta-descripcion: parrafo de la descripcion del archivo. si no hay descripcion recomiendo eliminar la clase card-body
+            -clase proyecto-archivos-aSubir: span con el titlo de los archivos a subir por parte del usuario 
+-->

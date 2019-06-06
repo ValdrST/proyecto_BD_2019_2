@@ -19,14 +19,13 @@ begin
   insert into temporal_servicios_recarga
   select aparato_id, numero_matricula, latitud, longitud
   from(
-  select a.aparato_id, numero_matricula, latitud, longitud, (power(longitud-p_longitud,2)
-  + power(latitud-p_latitud,2)) as distancia_cuadrada
+  select a.aparato_id, numero_matricula, latitud, longitud, fx-distancia-metros(latitud,longitud,p_latitud,p_longitud) as distancia
   from(
     select *
     from aparato
     where estado_id = v_estado_bat_baja_id
     join ubicacion using(aparato_id)
-  ) a order by distancia_cuadrada asc
+  ) a order by distancia asc
   where rownum < 21;
 end;
 /

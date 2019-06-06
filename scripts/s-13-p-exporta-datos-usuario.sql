@@ -2,7 +2,7 @@
 --@Fecha creación: 26/05/2019
 --@Descripción: Funcion que exporta los datos de un usuario a un archivo de texto.
 connect gr_proy_admin/bravo123
-create or replace procedure p-exporta-datos(p_usuario_id in numeric(10,0))
+create or replace procedure p-exporta-datos-usuario(p_usuario_id in numeric(10,0))
 is
 v_file utl_file.file_type;
 v_email usuario.email%type;

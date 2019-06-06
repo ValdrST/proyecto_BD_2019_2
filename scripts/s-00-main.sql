@@ -31,6 +31,9 @@ connect gr_proy_admin/bravo123
 @s-08-vistas.sql
 connect gr_proy_admin/bravo123
 @s-10-consultas.sql
-@s-11-tr-bonificacion_reporte.sql
 @s-11-tr-historico_estado.sql
 @s-09-carga-inicial.sql
+@s-11-tr-bonificacion_reporte.sql
+@s-11-tr-validar_servicio_recarga.sql
+@s-15-fx-dias_fechas.sql
+@s-17-lob-scooter-anywhere.sql

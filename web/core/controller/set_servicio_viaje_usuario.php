@@ -6,8 +6,7 @@
         require_once("../model/Servicio.php");
         $usuario_id = $_POST['usuario_id'];
         $fin = $_POST['fin'];
-        $folio = $_POST['folio'];
         $aparato_id = $_POST['aparato_id'];
         $Servicio = new Servicio();
-        $row = $Servicio->set_servicio_viaje($usuario_id,$fin,$folio,$aparato_id);
+        $row = $Servicio->set_servicio_viaje($usuario_id,$fin,$aparato_id);
         echo(json_encode(array('resultado'=>$row)));

@@ -1,3 +1,6 @@
+--@Autores: Mario Garrido, Vicente Romero
+--@Fecha creación: 02/06/2019
+--@Descripción: Trigger encargado de avisar al sistema que la bateria es baja y pone el estado correspondiente
 set serveroutput on
 create or replace trigger tr_cambio_bateria
 for insert or update of porcentaje_carga on aparato

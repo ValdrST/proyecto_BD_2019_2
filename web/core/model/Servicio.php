@@ -5,15 +5,14 @@
             $this->db = new Conexion();
         }
 
-        function set_servicio_viaje($usuario_id,$fin,$folio,$aparato_id){
+        function set_servicio_viaje($usuario_id,$fin,$aparato_id){
             $query = "INSERT INTO servicio (servicio_id, usuario_id, tipo) VALUES (servicio_seq.nextval, :usuario_id, 'V')";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':usuario_id',$usuario_id);
             if($stmt->execute()){
-                $query = "INSERT INTO viaje (servicio_id, inicio, fin, folio, aparato_id) VALUES (servicio_seq.currval, sysdate,to_date(:fin,'yyyy-mm-dd hh24:mi'), :folio,:aparato_id)";
+                $query = "INSERT INTO viaje (servicio_id, inicio, fin, folio, aparato_id) VALUES (servicio_seq.currval, sysdate,to_date(:fin,'yyyy-mm-dd hh24:mi'), folio_viaje,:aparato_id)";
                 $stmt = $this->db->prepare($query);
                 $stmt->bindParam(':fin',$fin);
-                $stmt->bindParam(':folio',$folio);
                 $stmt->bindParam(':aparato_id',$aparato_id);
                 if($stmt->execute()){
                     $query = "UPDATE aparato set estado_id=(select estado_id from estado where clave='ENSV') where aparato_id = :aparato_id";    

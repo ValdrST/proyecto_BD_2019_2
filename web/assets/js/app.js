@@ -270,7 +270,6 @@ $(document).ready(function () {
         data = {
             usuario_id: sessionStorage.getItem("id"),
             fin: get_value_input(".viaje-fin"),
-            folio: random_generator(13),
             aparato_id: get_id_tag(this)
         };
         res = ajax_request("core/controller/set_servicio_viaje_usuario.php", "POST", data);

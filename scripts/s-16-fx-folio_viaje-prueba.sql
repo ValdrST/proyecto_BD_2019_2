@@ -10,6 +10,6 @@ begin
   into v_servicio_id
   from viaje
   where rownum <2;
-  dbms_output.put_line('Folio del viaje ' || v_servicio_id || ' es: '|| fx-folio(v_servicio_id));
+  dbms_output.put_line('Folio del viaje ' || v_servicio_id || ' es: '|| folio_viaje);
 end;
 /

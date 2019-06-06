@@ -1,8 +1,8 @@
 //Variables
-$primary-color: #cc0021;
+$primary-color: #00cc00;
 $primary-color-hover: #fff;
 $background-color: #ffffff;
-$background-sidebar: #e73333;
+$background-sidebar: #00a00d;
 $gray-1: #f7f7f7;
 $gray-2: #dfdfdf;
 $gray-3: #a0a0a0;
@@ -232,8 +232,8 @@ code {
 
 .btn-primary:hover, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
 	color: #000;
-	background-color: #801d2d!important;
-	border-color: #801d2d!important;
+	background-color: #1d802a!important;
+	border-color: #1d5e17!important;
 }
 
 .btn-outline-primary {
@@ -655,9 +655,6 @@ code {
 		display: inline;
 		border: none;
 		padding: 0;
-		margin-top: 0;
-		margin-bottom: 0;
-		width: 100%;
 	}
 }
 
@@ -703,11 +700,6 @@ code {
 	font-size: .75rem;
 	margin-top: -.25rem;
 }
-
-.progress-bar {
-	
-}
-
 
 // Calendar Widget
 

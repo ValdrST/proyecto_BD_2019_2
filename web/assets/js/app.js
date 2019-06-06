@@ -26,258 +26,6 @@ $(document).ready(function () {
         }
     }
 
-    function load_modal_equipo() {
-        equipo_id = get_id_tag(this);
-        equipo = get_equipo(equipo_id);
-        procesos = get_procesos_equipo(equipo.proceso_id);
-        usuarios = get_usuarios_equipo(equipo.usuarios_id);
-        set_text_tag(".equipo-nombre-equipo", equipo.nombre);
-        set_text_tag(".equipo-texto-descripcion", equipo.descripcion);
-        cont = 0;
-        if (procesos[0].tarea[0] != "") {
-            console.log(procesos);
-            procesos = add_options(procesos, 'proceso_id', ["<button class='btn btn-sm btn-info btn-modal-proceso der' type='button'>Ir al proyecto</button>", "<button class='btn btn-sm btn-danger btn-delete-proceso' type='button'>Eliminar proceso</button>"]);
-            console.log(procesos);
-            $("#table-proceso").DataTable({
-                destroy: true,
-                info: false,
-                data: procesos,
-                columns: [
-                    { data: 'titulo' },
-                    { data: 'options' }
-                ]
-            });
-        } else {
-            $("#table-proceso").DataTable({
-                destroy: true,
-                info: false,
-                searching: false,
-                paging: false
-            });
-        }
-        cont = 0;
-        if (usuarios[0] == false) {
-            $(".tbody-usuario-equipo").append("<tr class='blanco'><td class='equipo-miembro-usuario'></td><td class='equipo-miembro-nombre'></td><td class='equipo-miembro-rol'>Sin usuarios asignados</td><td class='equipo-miembro-acciones'></td></tr>");
-        } else
-            usuarios.forEach(usuario => {
-                cont++;
-                if (cont % 2 == 0) {
-                    $(".tbody-usuario-equipo").append("<tr class='blanco'><td class='equipo-miembro-usuario'>" + usuario.usuario + "</td><td class='equipo-miembro-nombre'>" + usuario.nombre + "</td><td class='equipo-miembro-rol'>" + (usuario.rol == null ? "sin rol" : usuario.rol.replace(/,/g, '<br>')) + "</td><td class='equipo-miembro-acciones'><span class='equipo-btn-elimina-miembro'><button class='btn btn-sm btn-danger'>Eliminar</button></span><span class='equipo-btn-edita-miembro'><button id=" + usuario.usuario_id + " class='btn btn-sm btn-ver-usuario btn-info'>ver</button></span></td></tr>");
-                } else {
-                    $(".tbody-usuario-equipo").append("<tr class='plata'><td class='equipo-miembro-usuario'>" + usuario.usuario + "</td><td class='equipo-miembro-nombre'>" + usuario.nombre + "</td><td class='equipo-miembro-rol'>" + (usuario.rol == null ? "sin rol" : usuario.rol.replace(/,/g, '<br>')) + "</td><td class='equipo-miembro-acciones'><span class='equipo-btn-elimina-miembro'><button class='btn btn-sm btn-danger'>Eliminar</button></span><span class='equipo-btn-edita-miembro'><button id=" + usuario.usuario_id + " class='btn btn-sm btn-ver-usuario btn-info'>ver</button></span></td></tr>");
-                }
-
-            });
-        $("#modal-equipo").modal('toggle');
-    }
-
-    function get_rol_usuario(usuario_id) {
-        return ajax_request("core/controller/get_rol_usuario.php", "GET", { usuario_id: usuario_id });
-    }
-
-
-    function get_proceso(proceso_id) {
-        procesos = [];
-        return ajax_request("core/controller/get_proceso.php", "GET", { proceso_id: proceso_id });
-    }
-
-    function load_modal_add_equipo() {
-        usuario_id = $(this).attr('id');
-        modal_options = {
-            tags: {
-                div_modal: ".modal-container-equipo",
-                id_modal: "#modal-add-equipo",
-                title: ''
-            },
-            data: {
-                view_modal: "core/view/add_equipo.html",
-                title: "Añadir equipo"
-            }
-        };
-        load_modal(modal_options, function () {
-            set_id_tag(".btn-set-equipo-usuario", usuario_id);
-            equipos_usuario = get_equipo_usuario(usuario_id);
-            equipos = get_equipos_all();
-            equipos_temp = equipos;
-            equipos = [];
-            equipos_temp.forEach(equipo => {
-                equipo.options = "<div class='form-check'><input type='checkbox' class='form-check-input chk-equipo-id' id='" + equipo.org_equipo_id + "'></div>";
-                equipos_usuario.forEach(equipo_usuario => {
-                    if (equipo.org_equipo_id == equipo_usuario.org_equipo_id)
-                        equipo.options = "<div class='form-check'><input type='checkbox' class='form-check-input chk-equipo-id' id='" + equipo.org_equipo_id + "' checked></div>";
-                });
-                equipos.push(equipo);
-            });
-            $("#table-equipo-add").DataTable({
-                paging: false,
-                searching: false,
-                info: false,
-                destroy: true,
-                data: equipos,
-                columns: [
-                    { data: 'nombre' },
-                    { data: 'descripcion' },
-                    { data: 'options' }
-                ]
-            });
-        });
-    }
-
-    function load_modal_add_rol() {
-        usuario_id = get_id_tag(this);
-        modal_options = {
-            tags: {
-                div_modal: ".modal-container-rol",
-                id_modal: "#modal-add-rol",
-                title: ''
-            },
-            data: {
-                view_modal: "core/view/add_rol.html",
-                title: "Modificar rol"
-            }
-        };
-        load_modal(modal_options, function () {
-            set_id_tag(".btn-set-rol", usuario_id);
-            roles = get_rol();
-            roles_temp = roles;
-            roles = [];
-            rol_usuario = get_rol_usuario(usuario_id);
-            roles_temp.forEach(rol => {
-                if (rol_usuario.includes(rol.clave_rol.toString()))
-                    if (rol.clave_rol == 3)
-                        rol.options = "<div class='form-check'><input type='checkbox' class='form-check-input chk-clave-rol' id='" + rol.clave_rol + "' checked disabled></div>";
-                    else
-                        rol.options = "<div class='form-check'><input type='checkbox' class='form-check-input chk-clave-rol' id='" + rol.clave_rol + "' checked></div>";
-                else
-                    rol.options = "<div class='form-check'><input type='checkbox' class='form-check-input chk-clave-rol' id='" + rol.clave_rol + "'></div>";
-                roles.push(rol);
-            });
-            $("#table-rol-add").DataTable({
-                paging: false,
-                searching: false,
-                info: false,
-                destroy: true,
-                data: roles,
-                columns: [
-                    { data: 'nombre' },
-                    { data: 'options' }
-                ]
-            });
-        });
-    }
-
-
-
-    function set_equipo_usuario() {
-        usuario_id = $(this).attr('id');
-        org_equipos_id = get_checklist_selected(".chk-equipo-id");
-        data = {
-            usuario_id: usuario_id,
-            org_equipos_id: org_equipos_id
-        };
-        response = ajax_request("core/controller/set_equipo_usuario.php", "POST", data);
-        if (response.resultado == true) {
-            alert("exito en el registro de roles");
-            $("#modal-add-equipo").modal('toggle');
-            $("#modal-usuario").modal('toggle');
-            load_panel_usuarios();
-        } else {
-            $("#modal-add-equipo").modal('toggle');
-            alert("Error en el registro de equipo");
-        }
-    }
-
-    function set_rol() {
-        usuario_id = $(this).attr('id');
-        claves_rol = get_checklist_selected(".chk-clave-rol");
-        data = {
-            usuario_id: usuario_id,
-            claves_rol: claves_rol
-        }
-        response = ajax_request("core/controller/set_rol_usuario.php", "POST", data);
-        if (response.resultado == true) {
-            alert("exito en el registro de roles");
-            $("#modal-add-rol").modal('toggle');
-            $("#modal-usuario").modal('toggle');
-            load_panel_usuarios();
-        } else {
-            $("#modal-add-rol").modal('toggle');
-            alert("Error en el registro de roles");
-        }
-    }
-
-    function get_rol() {
-        return ajax_request("core/controller/get_rol.php", "GET", {});
-    }
-
-    function load_modal_usuario() {
-        usuario_id = $(this).attr('id');
-        usuario = get_usuario(usuario_id);
-        equipos = get_equipo_usuario(usuario_id);
-        set_input(".usuario-usuario-text", usuario.usuario);
-        set_input(".usuario-nombre-text", usuario.nombre);
-        set_input(".usuario-apellidos-text", usuario.apellidos);
-        tareas = get_tareas_usuario(usuario_id);
-        $("#table-equipo").DataTable({
-            paging: false,
-            searching: false,
-            info: false,
-            destroy: true,
-            data: equipos,
-            columns: [
-                { data: 'nombre' },
-                { data: 'descripcion' }
-            ]
-        });
-        cont = 0;
-        roles = [];
-        usuario['clave_rol'].forEach(clave => {
-            roles.push({ clave: clave, nombre: usuario['rol'][cont], options: (usuario['clave_rol'][cont] == 3 ? "Sin acciones" : "<button id='" + clave + "' class='btn btn-sm btn-danger btn-rol-delete' type='button'>Eliminar</button>") });
-            cont++;
-        });
-        $("#table-rol").DataTable({
-            paging: false,
-            searching: false,
-            info: false,
-            destroy: true,
-            data: roles,
-            columns: [
-                { data: 'nombre' }
-            ]
-        });
-        $(".btn-rol-add").attr("id", usuario_id);
-        $(".btn-equipo-add").attr("id", usuario_id);
-        $(".modal-container-rol").load("core/view/add_rol.html");
-        $(".modal-container-equipo-view").load("core/view/equipo.html");
-        tareas = get_tareas_usuario(usuario_id);
-        tareas_temp = tareas;
-        tareas = [];
-        tareas_temp.forEach(tarea => {
-            tarea.options = "<button class='btn btn-sm btn-ver-tarea btn-info' id='" + tarea.tarea_id + "'>ver tarea</button>";
-            tareas.push(tarea);
-        });
-        $("#table-tarea").DataTable({
-            paging: true,
-            searching: true,
-            destroy: true,
-            data: tareas,
-            columns: [
-                { data: 'nombre' },
-                { data: 'titulo' },
-                { data: 'fecha_inicio' },
-                { data: 'fecha_fin' },
-                { data: 'clave_estado' },
-                { data: 'options' }
-            ]
-        });
-        $("#modal-usuario").modal();
-    }
-
-    function cerrar_equipo() {
-        $(".tbody-usuario-equipo").text("");
-        $(".tabProyectos").text("");
-    }
-
     function entrar() {
         document.body.addEventListener("keydown", acceso);
     }
@@ -301,59 +49,6 @@ $(document).ready(function () {
         set_text_tag(".usuario-h4", sessionStorage.getItem("email"));
         document.body.removeEventListener("keydown", acceso);
         location.href = "index.php";
-    }
-
-    function get_equipo_usuario(usuario_id) {
-        equipos = [];
-        data = {
-            usuario_id: usuario_id
-        }
-        return ajax_request("core/controller/get_equipo_usuario.php", "GET", data);
-    }
-
-    function get_usuario(usuario_id) {
-        usuario = [];
-        return ajax_request("core/controller/get_usuario.php", "GET", { usuario_id: usuario_id });
-    }
-
-    function get_usuarios_all() {
-        usuarios = []
-        usuarios_get = ajax_request("core/controller/get_usuarios_all.php", "GET", {});
-        usuarios_get.forEach(usuario => {
-            usuario = parse_strings_to_array_values(usuario, ["clave_rol", "rol"]);
-            usuarios.push(usuario);
-        });
-        return usuarios;
-    }
-
-    function get_equipos_all() {
-        equipos = [];
-        equipos_get = ajax_request("core/controller/get_equipos_all.php", "GET", {});
-        equipos_get.forEach(equipo => {
-            equipo = parse_strings_to_array_values(equipo, ["usuarios", "usuarios_id"]);
-            equipos.push(equipo);
-        });
-        return equipos;
-    }
-
-    function get_procesos_equipo(procesos_id) {
-        return ajax_request("core/controller/get_procesos_equipo.php", "GET", { procesos_id: procesos_id });
-    }
-
-    function get_equipo(org_equipo_id) {
-        return ajax_request("core/controller/get_equipo.php", "GET", { org_equipo_id: org_equipo_id });
-    }
-
-    function get_tareas_usuario(usuario_id) {
-        return ajax_request("core/controller/get_tarea_usuario.php", "GET", { usuario_id: usuario_id });
-    }
-
-    function get_usuarios_equipo(usuarios_id) {
-        return ajax_request("core/controller/get_usuarios_equipo.php", "GET", { usuarios_id: usuarios_id });
-    }
-
-    function get_procesos_all() {
-        return ajax_request("core/controller/get_procesos_all.php", "GET", {});
     }
 
     function get_servicios_renta_usuario(usuario_id) {
@@ -608,21 +303,19 @@ $(document).ready(function () {
     }
 
     function get_servicio_renta_id(servicio_id){
-        ajax_request("core/controller/get_servicio_renta_id.php","GET",{servicio_id:servicio_id});
+        return ajax_request("core/controller/get_servicio_renta_id.php","GET",{servicio_id:servicio_id});
     }
 
     function get_servicio_viaje_id(servicio_id){
-        ajax_request("core/controller/get_servicio_viaje_id.php","GET",{servicio_id:servicio_id});
+        return ajax_request("core/controller/get_servicio_viaje_id.php","GET",{servicio_id:servicio_id});
     }
 
     function load_modal_detalle_renta(){
         servicio_id = get_id_tag(this);
-        servicio = get_servicio_renta_id(servicio_id);
-        console.log(servicio);
         modal_options = {
             tags: {
                 div_modal: ".modal-container-detalle-renta",
-                id_modal: "#modal-detale-renta",
+                id_modal: "#modal-detalle-renta",
                 title: ".modal-title"
             },
             data: {
@@ -630,32 +323,40 @@ $(document).ready(function () {
                 title: "Detalle renta"
             }
         };
+        
         load_modal(modal_options, function () {
-            aparatos = get_aparatos_all();
-            add_options(aparatos, 'APARATO_ID', ["<button class='btn btn-sm btn-danger btn-terminar-renta' id=0 type='button'>Terminar</button>"]);
-            $("#table-aparato-renta").DataTable({
+            servicio = get_servicio_renta_id(servicio_id);
+            console.log(servicio);
+            $("#table-detalle-renta").DataTable({
                 destroy: true,
-                data: aparatos,
+                paging: false,
+                info: false,
+                searching: false,
+                responsive: true,
+                data: servicio,
                 columns: [
                     { data: 'NUMERO_MATRICULA' },
-                    { data: 'CODIGO_ACCESO' },
-                    { data: 'CAPACIDAD' },
-                    { data: 'PORCENTAJE_CARGA' },
                     { data: 'NOMBRE' },
-                    { data: 'options' }
+                    { data: 'INICIO' },
+                    { data: 'DIAS_CUSTODIO' },
+                    { data: 'DIRECCION' },
+                    { data: 'ESTADO' }
                 ]
             });
+            set_id_tag(".btn-terminar-renta",servicio_id);
+            if(servicio[0].ESTADO != "EN SERVICIO RENTA"){
+                $(".btn-terminar-renta").hide();
+            }
         });
     }
 
     function load_modal_detalle_viaje(){
         servicio_id = get_id_tag(this);
-        servicio = get_servicio_renta_id(servicio_id);
-        console.log(servicio);
+        console.log("viaje");
         modal_options = {
             tags: {
                 div_modal: ".modal-container-detalle-viaje",
-                id_modal: "#modal-detale-viaje",
+                id_modal: "#modal-detalle-viaje",
                 title: ".modal-title"
             },
             data: {
@@ -663,26 +364,32 @@ $(document).ready(function () {
                 title: "Detalle viaje"
             }
         };
+        
         load_modal(modal_options, function () {
-            aparatos = get_aparatos_all();
-            add_options(aparatos, 'APARATO_ID', ["<button class='btn btn-sm btn-danger btn-terminar-viaje' id=0 type='button'>Terminar</button>"]);
-            $("#table-aparato-renta").DataTable({
+            servicio = get_servicio_viaje_id(servicio_id);
+            console.log(servicio);
+            $("#table-detalle-viaje").DataTable({
                 destroy: true,
-                data: aparatos,
+                paging: false,
+                info: false,
+                searching: false,
+                responsive: true,
+                data: servicio,
                 columns: [
                     { data: 'NUMERO_MATRICULA' },
-                    { data: 'CODIGO_ACCESO' },
-                    { data: 'CAPACIDAD' },
-                    { data: 'PORCENTAJE_CARGA' },
                     { data: 'NOMBRE' },
-                    { data: 'options' }
+                    { data: 'INICIO' },
+                    { data: 'FIN' },
+                    { data: 'FOLIO' },
+                    { data: 'ESTADO' }
                 ]
             });
+            set_id_tag(".btn-terminar-viaje",servicio_id);
+            if(servicio[0].ESTADO != "EN SERVICIO VIAJE"){
+                $(".btn-terminar-viaje").hide();
+            }
         });
     }
-
-
-
     function load_modal_registro_renta() {
         modal_options = {
             tags: {
@@ -713,6 +420,30 @@ $(document).ready(function () {
         });
     }
 
+    function terminar_viaje(){
+        servicio_id = get_id_tag(this);
+        res = ajax_request("core/controller/terminar_servicio.php","POST",{servicio_id:servicio_id,tipo:'V'});
+        if (res.resultado == true) {
+            alert("Viaje terminado");
+            $("#modal-detalle-viaje").modal('toggle');
+            load_panel_servicios();
+        } else {
+            alert("Error en terminar viaje");
+        }
+    }
+
+    function terminar_renta(){
+        servicio_id = get_id_tag(this);
+        res = ajax_request("core/controller/terminar_servicio.php","POST",{servicio_id:servicio_id,tipo:'R'});
+        if (res.resultado == true) {
+            alert("Renta terminada");
+            $("#modal-detalle-renta").modal('toggle');
+            load_panel_servicios();
+        } else {
+            alert("Error en terminar renta");
+        }
+    }
+
     function cerrar_sesion() {
         ajax_request("core/controller/cerrar_sesion.php", "GET", {});
         sessionStorage.clear();
@@ -721,11 +452,9 @@ $(document).ready(function () {
     }
 
     $("#wrapper").on("click", ".btn-index", index);
-    $("#wrapper").on("click", ".btn-usuarios", load_panel_usuarios);
     $("#wrapper").on("click", ".btn-servicios", load_panel_servicios);
     $(".main-panel").on("click", ".btn-iniciar-sesion", iniciar_sesion);
     $("#wrapper").on("click", ".btn-logout", cerrar_sesion);
-    $("#wrapper").on("click", ".btn-ver-usuario", load_modal_usuario);
     $("#wrapper").on("click", ".btn-registro-usuario", load_modal_registro_usuario);
     $("#wrapper").on("click", ".btn-set-usuario", set_usuario);
     $("#wrapper").on("click", ".btn-registro-viaje", load_modal_registro_viaje);
@@ -736,5 +465,6 @@ $(document).ready(function () {
     $("#wrapper").on("click", ".btn-set-renta-commit", set_renta);
     $("#wrapper").on("click", ".btn-modal-detalle-renta", load_modal_detalle_renta);
     $("#wrapper").on("click", ".btn-modal-detalle-viaje", load_modal_detalle_viaje);
-    
+    $("#wrapper").on("click", ".btn-terminar-viaje", terminar_viaje);
+    $("#wrapper").on("click", ".btn-terminar-renta", terminar_renta);
 });

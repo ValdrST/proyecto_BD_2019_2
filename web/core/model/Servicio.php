@@ -41,6 +41,20 @@
             return False;
         }
 
+        function terminar_servicio_renta($servicio_id){
+            $query = "UPDATE aparato set estado_id=(select estado_id from estado where clave='ENSP') where aparato_id = (SELECT aparato_id from renta where servicio_id = :servicio_id)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':servicio_id',$servicio_id);
+            $res = $stmt->execute();
+            $query = "UPDATE renta set dias_custodio=dias_fechas(sysdate,inicio) where servicio_id = :servicio_id";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':servicio_id',$servicio_id);
+            $res2 = $stmt->execute();
+            if($res && $res2)
+                return TRUE;
+            return False;
+        }
+
         function set_servicio_renta($usuario_id,$dias_custodio,$direccion,$aparato_id){
             $query = "INSERT INTO servicio (servicio_id, usuario_id, tipo) VALUES (servicio_seq.nextval, :usuario_id, 'R')";
             $stmt = $this->db->prepare($query);

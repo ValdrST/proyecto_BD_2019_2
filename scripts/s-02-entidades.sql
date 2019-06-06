@@ -50,11 +50,13 @@ create table aparato(
     estado_id number(10,0) not null,
     recarga_id number(10,0) not null,
     marca_id number(10,0) not null,
+    reemplazado_id number(10,0) null,
     constraint aparato_porcentaje_carga_chk check (porcentaje_carga <= 100 and porcentaje_carga >= 0),
     constraint aparato_capacidad_chk check (capacidad > 0),
     constraint aparato_estado_id_fk foreign key(estado_id) references estado(estado_id),
     constraint aparato_marca_id_fk foreign key(marca_id) references marca(marca_id),
-    constraint aparato_recarga_id_fk foreign key(recarga_id) references recarga(servicio_id)
+    constraint aparato_recarga_id_fk foreign key(recarga_id) references recarga(servicio_id),
+    constraint aparato_reemplazado_id_fk foreign key(reemplazado_id) references aparato(aparato_id)
 );
 
 create table estado_historico(
@@ -90,14 +92,6 @@ create table ubicacion(
     constraint ubicacion_latitud_chk check (latitud <= 180 and latitud >= 0),
     constraint ubicacion_longitud_chk check (longitud <= 180 and longitud >= 0),
     constraint ubicacion_aprato_id_fk foreign key(aparato_id) references aparato(aparato_id)
-);
-
-create table reemplazo(
-    reemplazo_id number(10,0) constraint reemplazo_pk primary key,
-    aparato_viejo number(10,0) not null constraint aparato_aparato_viejo_uk unique,
-    aparato_nuevo number(10,0) not null constraint aparato_aparato_nuevo_uk unique,
-    constraint reemplazo_aparato_viejo_fk foreign key(aparato_viejo) references aparato(aparato_id),
-    constraint reemplazo_aparato_nuevo_fk foreign key(aparato_nuevo) references aparato(aparato_id)
 );
 
 create table tarjeta(

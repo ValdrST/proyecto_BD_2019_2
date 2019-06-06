@@ -37,5 +37,6 @@ from(
       select aparato_id
       from aparatos_disponibles) b
     on a.aparato_id = b.aparato_id)
-) a order by distancia_cuadrada asc;
+) a order by distancia_cuadrada asc
+where rownum < 2;
 

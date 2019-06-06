@@ -108,7 +108,7 @@ begin
           into v_dias_custodio
           from renta
           where renta.servicio_id=i.servicio_id;
-          utl_file.put_line*(v_file,'dias custodio: '||v_dias_custodio);
+          utl_file.put_line*(v_file,'dias custodio: '||to_char(v_fin,'YYYY/MM/DD HH24:MI'));
           select direccion
           into v_direccion
           from renta

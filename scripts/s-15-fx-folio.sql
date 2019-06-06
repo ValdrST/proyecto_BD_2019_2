@@ -1,3 +1,6 @@
+--@Autores: Mario Garrido, Vicente Romero
+--@Fecha creación: 26/05/2019
+--@Descripción: Funcion que genera el folio de un servicio de viaje.
 connect gr_proy_admin/bravo123
 create or replace function fx-folio(p_servicio_id in date)
 return char is

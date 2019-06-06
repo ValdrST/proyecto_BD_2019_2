@@ -12,6 +12,7 @@ v_estado_espera_id aparato.estado_id%type;
 v_estado_bat_baja_id aparato.estado_id%type;
 
 before statement is
+begin
 
 select estado_id
 into v_estado_espera_id
@@ -27,12 +28,11 @@ end before statement;
 before each row is
 v_index number;
 begin
-if(:new.porcentaje_carga <= 15.00 and :new.estado_id = v_estado_espera_id)
-{
+if(:new.porcentaje_carga <= 15.00 and :new.estado_id = v_estado_espera_id) then
   v_lista.extend;
   v_index := v_lista.last;
   v_lista(v_index) := :new.aparato_id;
-}
+end if;
 dbms_output.put_line('SYSTEM: Aparato con bateria baja encontrado.');
 end before each row;
 

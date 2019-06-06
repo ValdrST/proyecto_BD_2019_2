@@ -26,8 +26,8 @@ left outer join renta using(servicio_id);
 --Consulta que da al usuario los datos del scooter disponible más cercano con la capacidad de carga requerida por el usuario. Nota: En este caso de estudio se aleatorizará la capacidad y localización del usuario.
 select *
 from(
-  select a.aparato_id, numero_matricula, latitud, longitud, (sqrt(longitud-dbms_random.value(-180,180))
-  + sqrt(latitud-dbms_random.value(-90,90))) as distancia_cuadrada
+  select a.aparato_id, numero_matricula, latitud, longitud, (power(longitud-dbms_random.value(-180,180),2)
+  + power(latitud-dbms_random.value(-90,90),2)) as distancia_cuadrada
   from(
     aparatos_disponibles a
     right join(select aparato_id

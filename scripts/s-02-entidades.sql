@@ -1,6 +1,7 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 25/05/2019
 --@Descripción: codigo DDL del caso de estudio donde se crean las tablas
+connect gr_proy_admin/bravo123
 create table marca(
     marca_id number(10,0) constraint marca_pk primary key,
     nombre varchar(60) not null constraint marca_nombre_uk unique,

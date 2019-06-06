@@ -1,10 +1,13 @@
+set serveroutput on
+declare
+    v_nombre varchar(200):= 'prueba.png';
+    v_reporte_id number;
+    v_tamaño number;
+begin
+    select reporte_id into v_reporte_Id from reporte;
+    p_inserta_imagen(v_reporte_id,v_nombre);
+    select dbms_lob.getlength(imagen) as longitud_imagen into v_tamaño from imagen_reporte where reporte_id = v_reporte_id and rownum=1;
+    dbms_output.put_line('El tamaño de '|| v_nombre || ' es ' || v_tamaño);
+end;
+/
 show errors
-nombre varchar(200):= 'prueba.png';
-reporte_id numeric(10,0) := 4;
-exec p_actualiza_imagen(nombre,reporte_id)
-commit;
-Prompt Mostrando resultados
-col nombre_archivo format a30
-select libro_id,nombre_archivo,dbms_lob.getlength(imagen) as longitud_imagen
-from libro_imagen;
-Prompt Listo!

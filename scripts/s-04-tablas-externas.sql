@@ -1,7 +1,7 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 26/05/2019
 --@Descripción: Creacion de tablas externas
-
+connect gr_proy_admin/bravo123
 !mkdir -p /tmp/bases
 !chmod 777 /tmp/bases
 !cp aparato_ext.csv /tmp/bases

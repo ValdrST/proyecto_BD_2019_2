@@ -1,7 +1,7 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 25/05/2019
 --@Descripción: Creacion de secuencias necesarias
-
+connect gr_proy_admin/bravo123
 create sequence ubicacion_seq
     start with 33
     increment by 1

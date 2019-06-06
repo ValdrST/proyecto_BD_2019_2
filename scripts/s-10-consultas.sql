@@ -2,6 +2,7 @@
 --@Fecha creación: 26/05/2019
 --@Descripción: Script encargado de realizar consultas.
 --Consulta que muestra todos los usuarios y el numero de servicios (x servicio)
+connect gr_proy_admin/bravo123
 select * from ((select usuario_id, count(*) as cuenta_recarga
       from servicio where tipo='C' group by usuario_id) c
       join (

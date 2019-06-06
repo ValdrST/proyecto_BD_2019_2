@@ -1,6 +1,7 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 25/05/2019
 --@Descripción: Script que genera una carga inicial de datos
+connect gr_proy_admin/bravo123
 declare
     type int_varray is varray(100) of number;
     v_estado int_varray;
@@ -99,11 +100,12 @@ begin
     v_usuario.extend;
     v_usuario(2) := usuario_seq.currval;
     insert into servicio(servicio_id,usuario_id,tipo)
-        values (servicio_seq.nextval,usuario_seq.currval,'V');
+        values (servicio_seq.nextval,v_usuario(2),'V');
     insert into viaje(servicio_id,inicio,fin,folio,aparato_id)
         values (servicio_seq.currval,to_date('30-05-2019 12:00:33','dd-mm-yyyy hh24:mi:ss'),to_date('30-05-2019 12:00:33','dd-mm-yyyy hh24:mi:ss'),'1324123451293',v_aparato(1));
     v_servicio.extend;
     v_servicio(2) := servicio_seq.currval;
+    insert into reporte (reporte_id, usuario_id, aparato_id, fecha, latitud,longitud,descripcion,aceptado) values (reporte_seq.nextval,v_usuario(2),v_aparato(1),sysdate,130.000000,30.00230,'reporte de prueba',0);
     insert into usuario(usuario_id,email,nombre,apellidos,contraseña,puntos,es_socio) 
         values (usuario_seq.nextval,'usuario@hotmail.com','Li','shin gon','$2y$10$O.VlBmZpTzPYNERjz/UCnO.zF5g8iBMtcuYfEyhnE9fj4adV.LuDC',10,0);
     insert into tarjeta_prepago(tarjeta_prepago_id,usuario_id,codigo_de_barras,fecha_registro,fecha_expiracion,importe) 

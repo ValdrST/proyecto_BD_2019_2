@@ -1,6 +1,7 @@
 --@Autores: Mario Garrido, Vicente Romero
 --@Fecha creación: 26/05/2019
 --@Descripción: Script encargado de generar vistas
+connect gr_proy_admin/bravo123
 create or replace view aparatos_disponibles as--Vista de aparatos disponibles/ubi
 select aparato_id, u.latitud, u.longitud, numero_matricula
         from aparato a

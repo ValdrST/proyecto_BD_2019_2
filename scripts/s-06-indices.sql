@@ -1,6 +1,7 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 25/05/2019
 --@Descripción: Creacion de indices
+connect gr_proy_admin/bravo123
 create unique index zona_aparato_zona_aparato_id_iux on zona_aparato(zona_id,aparato_id);
 create unique index usuario_email_iux on usuario(lower(email));
 create index servicio_usuario_id_ix on servicio(usuario_id);

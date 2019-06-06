@@ -7,7 +7,7 @@ declare
 begin
     select count(1) into v_count from dba_users where username = upper('gr_proy_invitado');
     if v_count != 0 then
-         EXECUTE IMMEDIATE('drop user gr_proy_invitado cascade');
+        EXECUTE IMMEDIATE('drop user gr_proy_invitado cascade');
     end if;
     select count(1) into v_count from dba_users where username = upper('gr_proy_admin');
     if v_count != 0 then
@@ -19,7 +19,7 @@ end;
 connect sys/nomad123 as sysdba
 
 create or replace directory data_dir as '/tmp/bases';
-grant read, write on directory data_dir to gr_proy_admin;
+grant read, write on directory data_dir to rol_admin;
 @s-01-usuarios.sql
 connect gr_proy_admin/bravo123
 @s-02-entidades.sql

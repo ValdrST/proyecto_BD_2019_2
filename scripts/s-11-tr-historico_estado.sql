@@ -1,6 +1,7 @@
 --@Autores: Mario Garrido, Vicente Romero
 --@Fecha creación: 02/06/2019
 --@Descripción: Trigger encargado de bonificar al usuario en caso de aceptar reporte
+connect gr_proy_admin/bravo123
 create or replace trigger trg_historico_estado
     after insert or update of estado_id or delete on aparato
     for each row

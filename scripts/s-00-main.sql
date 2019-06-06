@@ -1,7 +1,7 @@
 --@Autor(es): Mario Garrido, Vicente Romero
 --@Fecha creación: 29/05/2019
 --@Descripción: Script invoca a los otros scripts
-connect sys/nomad123 as sysdba
+connect sys/system as sysdba
 declare
     v_count number := 0;
 begin
@@ -16,7 +16,7 @@ begin
     
 end;
 /
-connect sys/nomad123 as sysdba
+connect sys/system as sysdba
 
 create or replace directory data_dir as '/tmp/bases';
 grant read, write on directory data_dir to rol_admin;
@@ -36,4 +36,5 @@ connect gr_proy_admin/bravo123
 @s-11-tr-bonificacion_reporte.sql
 @s-11-tr-validar_servicio_recarga.sql
 @s-15-fx-dias_fechas.sql
+grant read,write on directory data_dir to gr_proy_invitado;
 @s-17-lob-scooter-anywhere.sql

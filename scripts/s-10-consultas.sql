@@ -24,19 +24,22 @@ left outer join viaje using(servicio_id)
 left outer join renta using(servicio_id);
 
 --Consulta que da al usuario los datos del scooter disponible más cercano con la capacidad de carga requerida por el usuario. Nota: En este caso de estudio se aleatorizará la capacidad y localización del usuario.
-begin
-select *
-from(
-  select a.aparato_id, numero_matricula, latitud, longitud, fx-distancia-metros(latitud,longitud,dbms_random.value(-90,90),dbms_random.value(-180,180)) as distancia
+
+select * from(
+  select aparato_id, numero_matricula, latitud, longitud
   from(
-    aparatos_disponibles a
-    right join(select aparato_id
-      from aparato_info_publica
-      where capacidad >= floor(dbms_random.value(1, 999))
-      intersect
-      select aparato_id
-      from aparatos_disponibles) b
+    select a.aparato_id, numero_matricula, latitud, longitud, fx_distancia_metros(latitud,longitud,dbms_random.value(-90,90),dbms_random.value(-180,180)) as distancia
+    from(
+      aparatos_disponibles a
+      right join
+     (
+        select aparato_id
+        from aparato_info_publica
+        where capacidad >= floor(dbms_random.value(1, 100))
+        intersect
+        select aparato_id
+        from aparatos_disponibles) b
     on a.aparato_id = b.aparato_id)
-) a order by distancia asc
+  ) order by distancia asc)
 where rownum < 2;
 

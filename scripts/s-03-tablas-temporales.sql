@@ -5,7 +5,7 @@ connect gr_proy_admin/bravo123
 create global temporary table temporal_servicios_recarga(
   aparato_id numeric(10,0) not null,
   numero_matricula char(6) not null,
-  latitud numeric(3,8) not null,
-  longitud numeric(3,8) not null
+  latitud numeric(11,8) not null,
+  longitud numeric(11,8) not null
 )
 on commit preserve rows;

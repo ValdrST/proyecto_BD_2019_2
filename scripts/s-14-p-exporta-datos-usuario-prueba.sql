@@ -4,13 +4,13 @@
 connect gr_proy_admin/bravo123
 set serveroutput on
 declare 
-    v_usuario_id char;
+    v_usuario_id numeric(10);
 begin
   select usuario_id
   into v_usuario_id
   from usuario
   where rownum <2;
-  p-exporta-datos-usuario(v_usuario_id);
+  p_exporta_datos_usuario(v_usuario_id);
   dbms_output.put_line('Listo. Revisar el archivo generado.');
 end;
 /

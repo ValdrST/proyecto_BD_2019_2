@@ -29,20 +29,19 @@ before each row is
 v_index number;
 begin
 if(:new.porcentaje_carga <= 15.00 and :new.estado_id = v_estado_espera_id) then
+  dbms_output.put_line('SYSTEM: Aparato con bateria baja encontrado.');
   v_lista.extend;
   v_index := v_lista.last;
   v_lista(v_index) := :new.aparato_id;
 end if;
-dbms_output.put_line('SYSTEM: Aparato con bateria baja encontrado.');
 end before each row;
 
 after statement is
 begin
-  for i in v_lista.first .. v_lista.last loop
+  forall i in v_lista.first .. v_lista.last
     update aparato
     set estado_id = v_estado_bat_baja_id
-    where aparato_id=i;
-  end loop;
+    where aparato_id=v_lista(i);
 end after statement;
 end;
 /

@@ -4,7 +4,7 @@
 connect gr_proy_admin/bravo123
 set serveroutput on
 declare 
-    v_servicio_id char;
+    v_servicio_id servicio.servicio_id%type;
 begin
   select servicio_id
   into v_servicio_id

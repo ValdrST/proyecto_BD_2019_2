@@ -9,6 +9,6 @@ declare
 begin
   v_longitud:=dbms_random.value(-180,180);
   v_latitud:=dbms_random.value(-90,90);
-  dbms_output.put_line('La distancia de (' || v_latitud || ','|| v_longitud || ') a (0,0) es: '|| fx-distancia-metros(0,0,v_latitud,v_longitud) || ' metros.');
+  dbms_output.put_line('La distancia de (' || v_latitud || ','|| v_longitud || ') a (0,0) es de: '|| fx_distancia_metros(0,0,v_latitud,v_longitud) || ' metros.');
 end;
 /

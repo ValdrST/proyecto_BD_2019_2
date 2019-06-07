@@ -16,9 +16,10 @@ begin
     
 end;
 /
-connect sys/nomad123 as sysdba
+connect sys/system as sysdba
 create or replace directory data_dir as '/tmp/bases';
 grant read, write on directory data_dir to rol_admin;
+grant read,write on directory data_dir to gr_proy_invitado;
 @s-01-usuarios.sql
 connect gr_proy_admin/bravo123
 @s-02-entidades.sql
@@ -35,6 +36,10 @@ connect gr_proy_admin/bravo123
 @s-09-carga-inicial.sql
 @s-11-tr-bonificacion_reporte.sql
 @s-11-tr-validar_servicio_recarga.sql
-
-grant read,write on directory data_dir to gr_proy_invitado;
+@s-15-fx-distancia-metros.sql
+@s-15-fx-folio_viaje.sql
+@s-15-fx-dias_fechas.sql
+@s-11-tr-cambio-bateria.sql
+@s-13-p-exporta-datos-usuario.sql
+@s-13-p-genera-candidatos-recarga.sql
 @s-17-lob-scooter-anywhere.sql

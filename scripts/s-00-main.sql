@@ -19,8 +19,8 @@ end;
 connect sys/system as sysdba
 create or replace directory data_dir as '/tmp/bases';
 grant read, write on directory data_dir to rol_admin;
-grant read,write on directory data_dir to gr_proy_invitado;
 @s-01-usuarios.sql
+grant read,write on directory data_dir to gr_proy_invitado;
 connect gr_proy_admin/bravo123
 @s-02-entidades.sql
 @s-03-tablas-temporales.sql
@@ -29,6 +29,7 @@ connect gr_proy_admin/bravo123
 @s-06-indices.sql
 @s-07-sinonimos.sql
 @s-08-vistas.sql
+@s-15-fx-distancia-metros.sql
 @s-10-consultas.sql
 @s-11-tr-historico_estado.sql
 @s-15-fx-folio_viaje.sql
@@ -36,7 +37,6 @@ connect gr_proy_admin/bravo123
 @s-09-carga-inicial.sql
 @s-11-tr-bonificacion_reporte.sql
 @s-11-tr-validar_servicio_recarga.sql
-@s-15-fx-distancia-metros.sql
 @s-15-fx-folio_viaje.sql
 @s-15-fx-dias_fechas.sql
 @s-11-tr-cambio-bateria.sql
